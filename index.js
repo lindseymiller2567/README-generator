@@ -29,7 +29,7 @@ const questions = [
     {
         type: "input",
         name: "installation",
-        message: "Enter the installation instructions."
+        message: "What command should be run to install dependencies?"
     },
     {
         type: "input",
@@ -47,15 +47,21 @@ const questions = [
         message: "Enter the test instructions."
     },
     {
-        type: "checkbox",
+        type: "list", // list allows user to only pick one license
         name: "license",
         message: "What license is your application covered under?",
-        choices: ["GNU AGPLv3", "GNU GPLv3", "GNU LGPLv3", "Mozilla Public", "Apache", "MIT", "Boost Software", "Unlicense"]
+        choices: ["Apache_2.0", "Boost_Software_License_1.0", "Mozilla_Public_License_2.0", "The_MIT_License", "No License"]
     }
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) { }
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, err => {
+        if (err) throw new Error(err)
+
+        console.log("READ ME file created! Check dist folder.")
+    })
+}
 
 // TODO: Create a function to initialize app
 function init() {
@@ -64,30 +70,24 @@ function init() {
 
 // for development testing purposes only
 const mockData = {
-    username: 'lindsey',
-    email: 'lindsey@email.com',
-    title: 'Lindseys Project',
+    username: 'lindseymiller2567',
+    email: 'lindseymiller2567@email.com',
+    title: "Lindsey's Awesome Project",
     description: 'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et.',
-    installation: 'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et.',
+    installation: 'npm install',
     usage: 'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et.',
-    contribution: 'Lindsey',
+    contribution: 'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et.',
     test: 'Duis consectetur nunc nunc. Morbi finibus non sapien nec pharetra. Fusce nec dignissim orci, ac interdum ipsum. Morbi mattis justo sed commodo pellentesque. Nulla eget fringilla nulla. Integer gravida magna mi, id efficitur metus tempus et.',
-    license: "MIT"
+    license: "Apache 2.0"
 }
 
 // Function call to initialize app
 init()
-    //.then(answers => console.log(mockData))
     .then(answers => {
         return generateMarkdown(answers)
     })
     .then(markDown => {
         // console.log(markDown)
-        fs.writeFile('./dist/README.md', markDown, err => {
-            if (err) {
-                reject(err)
-            }
-        })
-        console.log("file created")
+        writeToFile('./dist/README.md', markDown)
     })
     .catch(err => { console.log(err) })
