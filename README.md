@@ -10,8 +10,8 @@ npm install
 ```
 
 ## Usage
-After installing the necessary dependencies, the application will be invoked from the command line by entering: `node index` <br />
-The screen shots below will give you an idea of how this application should work, or checkout the video link below to get a step-by-step demo. 
+After installing the necessary dependencies, the application will be invoked from the command line by entering: `node index`
+The screen shots below will give you an idea of how this application should work, or checkout the video link below to get a step-by-step demo. <br />
 https://drive.google.com/file/d/16ZmFqoNxq0SttKIZCIOSxVEwbrgAiOv9/view
 
 ![Screenshot](./images/readme-screenshot-1.png) <br />
