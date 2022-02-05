@@ -50,7 +50,7 @@ const questions = [
         type: "list", // list allows user to only pick one license
         name: "license",
         message: "What license is your application covered under?",
-        choices: ["Apache_2.0", "Boost_Software_License_1.0", "Mozilla_Public_License_2.0", "The_MIT_License", "No License"]
+        choices: ["Apache 2.0", "Boost Software License 1.0", "Mozilla Public License 2.0", "The MIT License", "No License"]
     }
 ];
 
